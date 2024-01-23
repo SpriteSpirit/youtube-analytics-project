@@ -6,10 +6,10 @@ class Video:
 
     def __init__(self, video_id: str):
         self.video_id = video_id
-        self.video_title = None
-        self.video_url = None
-        self.view_count = None
-        self.like_count = None
+        self.video_title = self.get_video_info()['items'][0]['snippet']['title']
+        self.video_url = f'https://www.youtube.com/watch?v={self.video_id}'
+        self.view_count = self.get_video_info()['items'][0]['statistics']['viewCount']
+        self.like_count = self.get_video_info()['items'][0]['statistics']['likeCount']
 
     def __str__(self):
         return f'{self.video_title}'
