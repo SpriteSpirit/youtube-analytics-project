@@ -76,7 +76,7 @@ class Channel:
     @classmethod
     def get_service(cls):
         """
-        Создает объект Resource для работы с YouTube Dara API с помощью api_key.
+        Создает объект Resource для работы с YouTube Data API с помощью api_key.
         :return: Объект Resource
         """
         youtube = build('youtube', 'v3', developerKey=cls.api_key)
