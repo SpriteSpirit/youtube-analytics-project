@@ -6,11 +6,17 @@ class Video:
 
     def __init__(self, video_id: str):
         self.video_id = video_id
-        self.items = Video.get_video_info(self.video_id)['items'][0]
-        self.video_title = self.items['snippet']['title']
-        self.video_url = f'https://www.youtube.com/watch?v={self.video_id}'
-        self.view_count = self.items['statistics']['viewCount']
-        self.like_count = self.items['statistics']['likeCount']
+        try:
+            self.items = Video.get_video_info(self.video_id)['items'][0]
+            self.video_title = self.items['snippet']['title']
+            self.video_url = f'https://www.youtube.com/watch?v={self.video_id}'
+            self.view_count = self.items['statistics']['viewCount']
+            self.like_count = self.items['statistics']['likeCount']
+        except IndexError:
+            self.video_title = None
+            self.video_url = None
+            self.view_count = None
+            self.like_count = None
 
     def __str__(self):
         return f'{self.video_title}'
@@ -33,4 +39,3 @@ class PLVideo(Video):
     def __init__(self, video_id: str, playlist_id: str):
         super().__init__(video_id)
         self.playlist_id = playlist_id
-
